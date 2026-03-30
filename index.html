@@ -3,91 +3,572 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KP Automation | USMC Veteran Owned</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>KP Automation | Veteran-Owned Engineering Efficiency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
-        .card:hover { transform: translateY(-5px); transition: 0.3s; border-color: #eab308; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #080b11;
+            --bg-primary: #0c1018;
+            --bg-card: #111825;
+            --bg-card-hover: #161f2e;
+            --border: #1e293b;
+            --gold: #eab308;
+            --gold-dim: #a3820a;
+            --gold-glow: rgba(234, 179, 8, 0.10);
+            --text-primary: #e8eaf0;
+            --text-secondary: #8b95a8;
+            --text-muted: #556275;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Animations ──────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .anim-up { animation: fadeUp 0.7s ease-out both; }
+        .anim-in { animation: fadeIn 0.8s ease-out both; }
+        .d1 { animation-delay: 0.1s; }
+        .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.35s; }
+        .d4 { animation-delay: 0.5s; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Layout ──────────────────────── */
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--text-primary);
+            letter-spacing: 0.04em;
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+        .divider {
+            width: 48px; height: 2px;
+            background: var(--gold-dim);
+            margin-bottom: 24px;
+        }
+
+        /* ── Navigation ──────────────────── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(8, 11, 17, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none;
+        }
+        .nav-brand-icon {
+            width: 34px; height: 34px;
+            border: 2px solid var(--gold-dim);
+            border-radius: 3px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--gold);
+        }
+        .nav-wordmark {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            letter-spacing: 0.08em;
+        }
+        .nav-wordmark span { color: var(--gold); }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.25s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta {
+            padding: 9px 20px;
+            background: transparent;
+            border: 1px solid var(--gold-dim);
+            color: var(--gold);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .nav-cta:hover { background: var(--gold); color: var(--bg-deep); }
+
+        .nav-toggle { display: none; background: none; border: none; color: var(--text-secondary); font-size: 1.3rem; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-desktop { display: none; }
+            .nav-cta-desktop { display: none; }
+            .nav-desktop.open {
+                display: flex; flex-direction: column; gap: 16px;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--bg-deep);
+                border-bottom: 1px solid var(--border);
+                padding: 24px;
+                align-items: flex-start;
+            }
+            .nav-desktop.open .nav-links { flex-direction: column; gap: 14px; }
+        }
+
+        /* ── Hero ────────────────────────── */
+        .hero {
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -15%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 5px 14px;
+            background: rgba(234,179,8,0.05);
+            border: 1px solid rgba(234,179,8,0.16);
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+            color: var(--text-primary);
+            letter-spacing: 0.03em;
+            line-height: 1.0;
+            margin-bottom: 22px;
+        }
+        .hero h1 .gold { color: var(--gold); }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 500px;
+            margin-bottom: 36px;
+        }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 15px 32px;
+            background: var(--gold);
+            color: var(--bg-deep);
+            font-family: var(--font-body);
+            font-weight: 700; font-size: 0.88rem;
+            border: none; border-radius: 4px;
+            cursor: pointer; text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { background: #fbbf24; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(234,179,8,0.22); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 15px 24px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-weight: 500; font-size: 0.88rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer; text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-ghost:hover { border-color: var(--text-muted); color: var(--text-primary); }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-sub { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-right { order: -1; }
+        }
+
+        /* ── Services ────────────────────── */
+        .services { padding: 100px 0; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 36px 28px;
+            transition: all 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--gold-dim);
+            transform: scaleX(0);
+            transition: transform 0.35s;
+        }
+        .service-card:hover {
+            border-color: rgba(234,179,8,0.25);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+        .service-card h3 {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── About ───────────────────────── */
+        .about {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .about-details { list-style: none; margin-top: 24px; }
+        .about-details li {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(30,41,59,0.5);
+            font-size: 0.9rem;
+        }
+        .about-details li:last-child { border-bottom: none; }
+        .about-details i {
+            color: var(--gold-dim);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        .about-right p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+        .about-right p:first-child {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+        @media (max-width: 768px) {
+            .about .container { grid-template-columns: 1fr; }
+        }
+
+        /* ── Contact ─────────────────────── */
+        .contact {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+        .contact-box {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 56px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-box::before {
+            content: '';
+            position: absolute; top: 0; left: 60px; right: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+        }
+        .contact-box .section-title { margin-bottom: 10px; }
+        .contact-sub {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+        .contact-email {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            margin-bottom: 28px;
+        }
+        .contact-email i { color: var(--gold-dim); font-size: 0.85rem; }
+        .contact-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+        }
+
+        /* ── Footer ──────────────────────── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        .footer-brand span { color: var(--gold-dim); }
+        footer p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .footer-tagline {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            margin-top: 10px;
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-200 font-sans">
+<body>
 
-    <!-- Navigation -->
-    <nav class="bg-slate-950 shadow-sm py-4 border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Seal_of_the_United_States_Marine_Corps.svg" alt="USMC" class="h-10 w-10">
-                <h1 class="text-2xl font-bold text-slate-100">KP <span class="text-yellow-500">AUTOMATION</span></h1>
+    <!-- ═══ NAV ═══ -->
+    <nav>
+        <div class="container">
+            <a href="#home" class="nav-brand">
+                <div class="nav-brand-icon">KP</div>
+                <div class="nav-wordmark">KP <span>AUTOMATION</span></div>
+            </a>
+            <div class="nav-desktop" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
-            <div class="hidden md:flex space-x-8 text-slate-400 font-medium">
-                <span class="hover:text-yellow-500 cursor-pointer">QuickBooks</span>
-                <span class="hover:text-yellow-500 cursor-pointer">ERP Systems</span>
-                <span class="hover:text-yellow-500 cursor-pointer">Python Solutions</span>
-            </div>
+            <a href="#contact" class="nav-cta nav-cta-desktop">Get in Touch</a>
+            <button class="nav-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient text-white py-20 px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            
-            <!-- Text & SDVOSB Logo -->
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="home">
+        <div class="container">
             <div>
-                <img src="https://www.vhv.rs/dpng/d/209-2092966_transparent-sdvosb-logo-png-service-disabled-veteran-owned.png" alt="SDVOSB" class="h-20 mb-6 bg-white p-2 rounded">
-
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                    We Automate Your Workflow <br>So You Can Scale Your Business.
-                </h2>
-                <p class="text-xl text-slate-400 mb-10 max-w-xl">
-                    Specializing in QuickBooks integrations, ERP system streamlining, and custom Python automation for enterprise-level efficiency.
+                <div class="hero-badge anim-up d1">
+                    <i class="fas fa-shield-halved"></i>
+                    Service-Disabled Veteran-Owned Small Business
+                </div>
+                <h1 class="anim-up d2">
+                    We Automate Your Workflow<br>
+                    So You Can <span class="gold">Scale.</span>
+                </h1>
+                <p class="hero-sub anim-up d3">
+                    QuickBooks integrations, ERP streamlining, and custom Python automation&mdash;built for enterprise-level efficiency by someone who&rsquo;s done it in the field.
                 </p>
-                <a href="mailto:kurt@kp-automates.com?subject=Consultation%20Request" 
-                   class="inline-block bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-10 rounded-lg text-lg shadow-lg transition-all">
-                    Request a 90-Second Demo
+                <div class="hero-actions anim-up d4">
+                    <a href="mailto:kurt@kp-automates.com?subject=Consultation%20Request" class="btn-primary">
+                        Book a Consultation <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
+                    </a>
+                    <a href="#services" class="btn-ghost">
+                        See What We Build
+                    </a>
+                </div>
+            </div>
+            <div class="hero-right anim-in d3">
+                <img src="split-flag.jpg" alt="US / USMC Split Flag" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SERVICES ═══ -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">What We Do</div>
+                <div class="section-title">Three Ways We Make Your Business Faster</div>
+                <div class="divider"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>QuickBooks Sync</h3>
+                    <p>Automated invoicing, payroll feeds, and expense tracking through custom API integrations. No more manual data entry between systems.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>ERP Integration</h3>
+                    <p>Connect your CRM, inventory, and accounting into a single source of truth. We bridge the gaps your off-the-shelf software can&rsquo;t.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fab fa-python"></i></div>
+                    <h3>Custom Automation</h3>
+                    <p>Bespoke Python systems for data pipelines, scheduled reporting, and process orchestration&mdash;built to run unattended and scale with you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">About</div>
+                <div class="section-title">Built With Precision.<br>Operated With Integrity.</div>
+                <div class="divider"></div>
+                <ul class="about-details">
+                    <li><i class="fas fa-shield-halved"></i> USMC Veteran &amp; SDVOSB Certified</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Based in Northern California</li>
+                    <li><i class="fas fa-code"></i> Python, REST APIs, SQL, QuickBooks SDK</li>
+                    <li><i class="fas fa-briefcase"></i> Full-time engineering professional</li>
+                </ul>
+            </div>
+            <div class="about-right reveal">
+                <p>
+                    KP Automation was founded on a simple idea: the tedious, repetitive work that slows your business down can be eliminated with the right code.
+                </p>
+                <p>
+                    I&rsquo;m Kurt&mdash;a Marine Corps veteran and automation engineer. I spent years in enterprise environments watching teams burn hours on manual data entry, disconnected systems, and reporting that should&rsquo;ve been a cron job. So I started building the solutions myself.
+                </p>
+                <p>
+                    Today, KP Automation helps small and mid-size businesses connect their tools, automate their back-office workflows, and stop paying people to do what a script can handle in seconds. Every engagement is hands-on&mdash;I scope it, build it, and support it.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-box reveal">
+                <div class="section-label">Get Started</div>
+                <div class="section-title">Let&rsquo;s Talk About Your Workflow</div>
+                <p class="contact-sub">
+                    Tell me what&rsquo;s eating your team&rsquo;s time. I&rsquo;ll tell you if automation can fix it&mdash;no pitch, no pressure.
+                </p>
+                <div class="contact-email">
+                    <i class="fas fa-envelope"></i>
+                    kurt@kp-automates.com
+                </div>
+                <br>
+                <a href="mailto:kurt@kp-automates.com?subject=Automation%20Inquiry" class="btn-primary">
+                    Send Me a Message <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
                 </a>
-            </div>
-
-            <!-- Split Flag Image -->
-            <div class="flex justify-center md:justify-end">
-                <img src="split-flag.jpg" alt="US/USMC Flag" class="max-w-full h-auto rounded-xl shadow-2xl border-4 border-slate-800">
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="py-20 px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-            <!-- QuickBooks -->
-            <div class="card bg-slate-800 p-8 rounded-xl shadow-md border-t-4 border-slate-600 text-center">
-                <i class="fa-solid fa-calculator text-4xl text-yellow-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-3 text-white">QuickBooks Sync</h3>
-                <p class="text-slate-400 text-sm">Automate your invoicing, payroll, and expense tracking with custom API integrations.</p>
-            </div>
-            <!-- ERP -->
-            <div class="card bg-slate-800 p-8 rounded-xl shadow-md border-t-4 border-slate-600 text-center">
-                <i class="fa-solid fa-network-wired text-4xl text-yellow-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-3 text-white">ERP Integration</h3>
-                <p class="text-slate-400 text-sm">Seamlessly connect your CRM and inventory systems for a single source of truth.</p>
-            </div>
-            <!-- Custom Python -->
-            <div class="card bg-slate-800 p-8 rounded-xl shadow-md border-t-4 border-slate-600 text-center">
-                <i class="fa-brands fa-python text-4xl text-yellow-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-3 text-white">Custom Automation</h3>
-                <p class="text-slate-400 text-sm">Bespoke Python bots designed to handle repetitive data tasks and prediction market trades.</p>
+                <p class="contact-note">Typically respond within 24 hours.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-500 py-12 text-center border-t border-slate-800">
-        <div class="flex justify-center mb-6">
-             <img src="https://marineparents.com/common/ig/fb/fb-mp-mc-seal-marinecorps.png" alt="USMC Logo" class="h-24 opacity-80 hover:opacity-100 transition-opacity">
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <div class="container">
+            <div class="footer-brand">KP <span>AUTOMATION</span></div>
+            <p>&copy; 2026 KP Automation LLC</p>
+            <p class="footer-tagline">Built with precision. Operated with integrity.</p>
         </div>
-        <p class="mb-2">© 2026 KP Automation LLC | kurt@kp-automates.com</p>
-        <p class="text-xs uppercase tracking-widest text-yellow-600 mt-2">Built with precision. Operated with integrity.</p>
     </footer>
+
+    <!-- ═══ Scroll Reveal ═══ -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
