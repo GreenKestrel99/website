@@ -3,75 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KP Automation | Business Efficiency</title>
+    <title>KP Automation | USMC Veteran Owned</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .hero-gradient { background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); }
-        .card:hover { transform: translateY(-5px); transition: 0.3s; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg { background: radial-gradient(circle at top right, #1e293b, #0f172a); }
+        .gold-glow { text-shadow: 0 0 10px rgba(234, 179, 8, 0.5); }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .card-hover:hover { transform: translateY(-10px); border-color: #eab308; transition: all 0.4s ease; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-slate-950 text-slate-200">
 
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm py-4">
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 py-4 glass">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-slate-800">KP <span class="text-blue-600">AUTOMATION</span></h1>
-            <div class="hidden md:flex space-x-8 text-gray-600 font-medium">
-                <span>QuickBooks</span>
-                <span>ERP Systems</span>
-                <span>Python Solutions</span>
+            <div class="flex items-center space-x-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Seal_of_the_United_States_Marine_Corps.svg/1200px-Seal_of_the_United_States_Marine_Corps.svg.png" alt="USMC" class="h-10 w-10">
+                <h1 class="text-xl font-black tracking-tighter uppercase">KP <span class="text-yellow-500">Automation</span></h1>
+            </div>
+            <div class="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="#services" class="hover:text-yellow-500">Solutions</a>
+                <a href="mailto:kurt@kp-automates.com" class="hover:text-yellow-500">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient text-white py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-block bg-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-4 tracking-widest uppercase">
-                USMC Veteran Owned & Operated
+    <!-- Hero -->
+    <section class="hero-bg min-h-screen flex items-center pt-20 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center space-x-2 bg-slate-800 border border-slate-700 px-3 py-1 rounded-full mb-6">
+                    <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-300">Operational Excellence</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-black mb-6 leading-none italic">MISSION <span class="text-yellow-500">CRITICAL</span> AUTOMATION</h2>
+                <p class="text-lg text-slate-400 mb-8 max-w-md">Precision Python engineering for QuickBooks, ERP systems, and business logic. Built with Marine Corps integrity.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="mailto:kurt@kp-automates.com?subject=Consultation" class="bg-yellow-500 hover:bg-yellow-400 text-black font-black py-4 px-8 rounded flex items-center justify-center space-x-2 transition-all">
+                        <span>DEPLOY SYSTEM</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                We Automate Your Workflow <br>So You Can Scale Your Business.
+            <div class="relative flex justify-center">
+                <!-- Badge Display -->
+                <div class="glass p-8 rounded-2xl relative overflow-hidden group">
+                    <img src="https://www.va.gov/OSDBU/images/VOSB_Logo_Small.png" alt="Veteran Owned" class="w-64 opacity-90 group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-yellow-500/10 mix-blend-overlay"></div>
+                </div>
             </div>
-            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                Specializing in QuickBooks integrations, ERP system streamlining, and custom Python automation for enterprise-level efficiency.
-            </p>
-            <a href="mailto:kurt@kp-automates.com?subject=Consultation%20Request" 
-               class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg text-lg shadow-lg">
-                Request a 90-Second Demo
-            </a>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="py-20 px-6">
+    <!-- Services -->
+    <section id="services" class="py-24 px-6 bg-slate-900">
         <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-            <!-- QuickBooks -->
-            <div class="card bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-600 text-center">
-                <i class="fa-solid fa-calculator text-4xl text-blue-600 mb-4"></i>
-                <h3 class="text-xl font-bold mb-3 text-slate-800">QuickBooks Sync</h3>
-                <p class="text-gray-600 text-sm">Automate your invoicing, payroll, and expense tracking with custom API integrations.</p>
+            <div class="card-hover glass p-10 rounded-xl border-l-4 border-yellow-500">
+                <i class="fa-solid fa-bolt-auto text-3xl text-yellow-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4">QuickBooks API</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Automate reconciliation, invoicing, and reporting. Zero-latency data synchronization.</p>
             </div>
-            <!-- ERP -->
-            <div class="card bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-600 text-center">
-                <i class="fa-solid fa-network-wired text-4xl text-blue-600 mb-4"></i>
-                <h3 class="text-xl font-bold mb-3 text-slate-800">ERP Integration</h3>
-                <p class="text-gray-600 text-sm">Seamlessly connect your CRM and inventory systems for a single source of truth.</p>
+            <div class="card-hover glass p-10 rounded-xl border-l-4 border-yellow-500">
+                <i class="fa-solid fa-microchip text-3xl text-yellow-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4">ERP Streamlining</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Connecting disparate data silos into a unified, automated command center.</p>
             </div>
-            <!-- Custom Python -->
-            <div class="card bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-600 text-center">
-                <i class="fa-brands fa-python text-4xl text-blue-600 mb-4"></i>
-                <h3 class="text-xl font-bold mb-3 text-slate-800">Custom Automation</h3>
-                <p class="text-gray-600 text-sm">Bespoke Python bots designed to handle repetitive data tasks and prediction market trades.</p>
+            <div class="card-hover glass p-10 rounded-xl border-l-4 border-yellow-500">
+                <i class="fa-brands fa-python text-3xl text-yellow-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4">Custom Bot Logic</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Proprietary Python solutions for prediction markets and repetitive enterprise tasks.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-gray-400 py-12 text-center border-t border-slate-800">
-        <p class="mb-2">© 2026 KP Automation LLC | kurt@kp-automates.com</p>
-        <p class="text-xs uppercase tracking-widest">Built with precision. Operated with integrity.</p>
+    <footer class="py-12 px-6 border-t border-slate-800 text-center">
+        <div class="flex justify-center space-x-4 mb-6 opacity-50">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Seal_of_the_United_States_Marine_Corps.svg/1200px-Seal_of_the_United_States_Marine_Corps.svg.png" class="h-8">
+            <img src="https://www.va.gov/OSDBU/images/VOSB_Logo_Small.png" class="h-8">
+        </div>
+        <p class="text-xs text-slate-500 uppercase tracking-widest">© 2026 KP Automation LLC | Semper Fidelis</p>
     </footer>
 
 </body>
