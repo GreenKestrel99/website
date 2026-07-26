@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KP Barcode Labels — Privacy Policy</title>
+  <meta name="description" content="Privacy policy for the KP Barcode Labels Shopify app by KP Automation." />
+  <style>
+    :root { --ink:#1c2026; --muted:#5c6570; --teal:#0e7c7b; --line:#e6e8e6; --bg:#f7f8f7; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink);
+      font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 48px 22px 80px; }
+    header { border-bottom: 3px solid var(--teal); padding-bottom: 18px; margin-bottom: 28px; }
+    h1 { font-size: 28px; margin: 0 0 6px; }
+    .updated { color: var(--muted); font-size: 14px; }
+    h2 { font-size: 19px; margin: 34px 0 10px; color: var(--teal); }
+    p, li { color: #2b2f36; }
+    ul { padding-left: 22px; }
+    li { margin: 6px 0; }
+    code { background:#eef1f0; padding:1px 6px; border-radius:5px; font-size:0.9em; }
+    a { color: var(--teal); }
+    footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line);
+      color: var(--muted); font-size: 14px; }
+    strong { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>KP Barcode Labels — Privacy Policy</h1>
+      <div class="updated">Last updated: July 26, 2026</div>
+    </header>
+
+    <p>KP Automation (&ldquo;we&rdquo;, &ldquo;us&rdquo;) operates the <strong>KP Barcode Labels</strong>
+    Shopify app (the &ldquo;App&rdquo;). This policy explains what data the App accesses, how it is used,
+    and your choices.</p>
+
+    <h2>What the App accesses</h2>
+    <p>When you install the App on your Shopify store, with your consent it requests these Shopify permissions:</p>
+    <ul>
+      <li><strong>read_products</strong> — to read your products and variants (title, variant, SKU, barcode, price) so you can select them and print labels.</li>
+      <li><strong>read_inventory</strong> — to optionally match label quantities to stock on hand.</li>
+    </ul>
+    <p>The App requests <strong>no access to customer data</strong> and does <strong>not</strong> read orders,
+    customer names, addresses, emails, or payment information.</p>
+
+    <h2>What we store</h2>
+    <ul>
+      <li><strong>Session/authentication data</strong> required to keep the App connected to your store
+      (managed by Shopify&rsquo;s app framework). This is deleted when you uninstall the App or on a
+      <code>shop/redact</code> request.</li>
+      <li>The App does <strong>not</strong> store your product catalog, and it does <strong>not</strong>
+      store any customer personal information.</li>
+    </ul>
+
+    <h2>How data is used</h2>
+    <p>Product and inventory data is read <strong>on demand</strong> to generate the label PDF you request,
+    and is used only to render that PDF. Generated PDFs are produced for your download and are not retained
+    by us beyond what is needed to deliver the file to your browser.</p>
+
+    <h2>Data sharing</h2>
+    <p>We do <strong>not</strong> sell or share your data with third parties. Data is processed solely to
+    provide the App&rsquo;s labeling function.</p>
+
+    <h2>Data retention &amp; deletion</h2>
+    <ul>
+      <li>Uninstalling the App triggers deletion of the App&rsquo;s session data for your store.</li>
+      <li>We honor Shopify&rsquo;s mandatory privacy webhooks:
+        <ul>
+          <li><strong>customers/data_request</strong> — the App stores no customer personal data, so there is nothing to compile.</li>
+          <li><strong>customers/redact</strong> — the App stores no customer personal data, so there is nothing to delete.</li>
+          <li><strong>shop/redact</strong> — the App deletes any remaining session data for your store.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Security</h2>
+    <p>Data in transit is protected by HTTPS. The App uses Shopify&rsquo;s authenticated session-token flow
+    and verifies all webhooks by HMAC signature.</p>
+
+    <h2>Changes</h2>
+    <p>We may update this policy; the &ldquo;Last updated&rdquo; date will change accordingly.</p>
+
+    <h2>Contact</h2>
+    <p>Questions or requests: <a href="mailto:kurt@kp-automates.com">kurt@kp-automates.com</a> (KP Automation).</p>
+
+    <footer>© 2026 KP Automation · KP Barcode Labels</footer>
+  </div>
+</body>
+</html>
